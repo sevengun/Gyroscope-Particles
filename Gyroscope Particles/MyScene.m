@@ -20,7 +20,6 @@
         NSString *particlePath = [[NSBundle mainBundle]pathForResource:@"fire" ofType:@"sks"];
         self.particle = [NSKeyedUnarchiver unarchiveObjectWithFile:particlePath];
         
-        self.particle.position = CGPointMake(100, 100);
         [self addChild:self.particle];
         
         self.manager = [[CMMotionManager alloc]init];
@@ -44,14 +43,14 @@
 {
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInNode:self];
-    self.particle.particlePosition = CGPointMake(location.x-110, location.y-110);
+    self.particle.particlePosition = location;
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint location = [touch locationInNode:self];
-    self.particle.particlePosition = CGPointMake(location.x-110, location.y-110);
+    self.particle.particlePosition = location;
 }
 
 -(void)update:(CFTimeInterval)currentTime {
